@@ -294,9 +294,7 @@ class VBookReader
         $card  = new VCardReader();
         while ($card->parse($lines)) {
             $property = $card->getProperty('N');
-            if (!$property) {
-                return "";
-            }
+            if(!$property)return "";
             $n   = $property->getComponents();
             $tmp = array();
             if (sizeof($n) >= 4 && $n[3])
@@ -307,6 +305,14 @@ class VBookReader
                 $tmp[] = $n[2]; // Quinlan
             if (sizeof($n) >= 5 && $n[4])
                 $tmp[] = $n[4]; // Esq.
+                
+                
+            if(sizeof($tmp)==0 && !($n[0])){
+                $property = $card->getProperty('FN');   
+                $n   = $property->getComponents();
+                if(!$property)return "";
+            }
+            
             $ret = array();
             if ($n[0])
                 $ret[] = $n[0];
@@ -315,6 +321,7 @@ class VBookReader
                 $ret[] = $tmp;
             $key         = join(", ", $ret);
             $cards[$key] = $card;
+            
             // MDH: Create new VCardReader to prevent overwriting previous one (PHP5)
             $card        = new VCardReader();
         }
