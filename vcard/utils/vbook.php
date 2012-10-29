@@ -215,7 +215,7 @@ class VBookReader
                     $lines[] = join("&nbsp;", $city_state_zip);
                 }
                 // Add the country.
-                if (sizeof($adr) >= 6) {
+                if (sizeof($adr) >= 7 && $adr[6]) {
                     $lines[] = $adr[6];
                 }
                 $html = join("\n", $lines);

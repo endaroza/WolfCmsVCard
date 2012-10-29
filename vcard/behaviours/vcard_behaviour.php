@@ -46,8 +46,11 @@ class Vcard {
               }
               break;
             case 1:
+              if(array_key_exists("vcard_id", $_REQUEST)) {
             	 $vcard_id = $_REQUEST["vcard_id"];
-            	 if($params[0]=="vcard_id"){
+            	}
+            	
+            	if($params[0]=="vcard_id" && array_key_exists("vcard_id", $_REQUEST)){
 	          	 	 $this->page->part->body->content_html = 
 	                 new View('../../plugins/'.'vcard'.'/views/show_vcard',
 	                  array('vcardsPath'=> $vcardsPath,'vcard_id'=> $vcard_id,'originalContent'=> $originalContent,"callerUri"=> $callerUri));
