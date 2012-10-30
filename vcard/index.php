@@ -18,6 +18,10 @@ Plugin::setInfos(array(
 ));
 Plugin::addController('vcard','Vcard', 'administrator');
 
+
+// add filter "Eb gallery"
+Filter::add('vcard_filter', 'vcard/filters/vcard_filter.php');
+
 AutoLoader::addFile('PageVcard', CORE_ROOT.'/plugins/'.'vcard'.'/behaviours/vcard_behaviour.php');
 Behavior::add('vcard', 'vcard'.'/behaviours/vcard_behaviour.php');
  

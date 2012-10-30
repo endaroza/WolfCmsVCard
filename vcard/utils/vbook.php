@@ -72,7 +72,7 @@ class VBookReader
         $this->result .= "http://vcardphp.sourceforge.net/</a></p>\n";
         
         //$this->result.= "</body>\n</html>\n";
-        return $this->result;
+        return mb_convert_encoding($this->result, 'UTF-8', 'HTML-ENTITIES');
     }
     
     /**
